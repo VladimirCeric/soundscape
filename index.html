@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prijava za domaći zadatak 4: Soundscape</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e9f0f7;
+      margin: 0;
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 1000px;
+      width: 90%;
+    }
+    h1 {
+      text-align: center;
+      color: #004080;
+      margin-top: 0;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .image-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: #fdfdfd;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .image-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .title {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .availability {
+      margin: 5px 0;
+      font-size: 0.9em;
+      color: #555;
+    }
+    .select-button {
+      padding: 8px 16px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .select-button:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+    .modal {
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .close-button {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-content input[type="text"],
+    .modal-content input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .modal-content button[type="submit"] {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prijava za domaći zadatak 4: <span class="istaknuto">Soundscape</span></h1>
+    <p style="text-align:center; margin-top:-10px; color:#444; font-size:0.95em;">Prijava zadatka moguća je korišćenjem zvaničnog imejla (<code>@gs.viser.edu.rs</code> ili <code>@viser.edu.rs</code>).</p>
+    <div class="gallery">
+      
+    <div class="image-card" data-filename="Caravaggio – Judith Beheading Holofernes">
+      <img src="slike/Caravaggio - Judith Beheading Holofernes.jpg" alt="Caravaggio – Judith Beheading Holofernes">
+      <div class="title">Caravaggio – Judith Beheading Holofernes</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Caravaggio – Judith Beheading Holofernes">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Caravaggio – The Beheading of Saint John the Baptist">
+      <img src="slike/Caravaggio - The Beheading of Saint John.jpg" alt="Caravaggio – The Beheading of Saint John the Baptist">
+      <div class="title">Caravaggio – The Beheading of Saint John the Baptist</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Caravaggio – The Beheading of Saint John the Baptist">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Caravaggio – The Cardsharps">
+      <img src="slike/Caravaggio - The Cardsharps.jpg" alt="Caravaggio – The Cardsharps">
+      <div class="title">Caravaggio – The Cardsharps</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Caravaggio – The Cardsharps">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Caravaggio – The Crowning with Thorns">
+      <img src="slike/Caravaggio - The Crowning with Thorns.jpg" alt="Caravaggio – The Crowning with Thorns">
+      <div class="title">Caravaggio – The Crowning with Thorns</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Caravaggio – The Crowning with Thorns">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Caravaggio – The Fortune Teller">
+      <img src="slike/Caravaggio - The Fortune Teller.jpg" alt="Caravaggio – The Fortune Teller">
+      <div class="title">Caravaggio – The Fortune Teller</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Caravaggio – The Fortune Teller">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Claude Lorrain – Port au soleil couchant">
+      <img src="slike/Claude Lorrain – Port au soleil couchant.jpg" alt="Claude Lorrain – Port au soleil couchant">
+      <div class="title">Claude Lorrain – Port au soleil couchant</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Claude Lorrain – Port au soleil couchant">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Diego Velazquez – An Old Woman Cooking Eggs">
+      <img src="slike/Diego Velazquez - An Old Woman Cooking Eggs.jpg" alt="Diego Velazquez – An Old Woman Cooking Eggs">
+      <div class="title">Diego Velazquez – An Old Woman Cooking Eggs</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Diego Velazquez – An Old Woman Cooking Eggs">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Diego Velazquez – El Aguador de Sevilla">
+      <img src="slike/Diego Velázquez - El aguador de Sevilla.jpg" alt="Diego Velazquez – El Aguador de Sevilla">
+      <div class="title">Diego Velazquez – El Aguador de Sevilla</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Diego Velazquez – El Aguador de Sevilla">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Diego Velazquez – The Lunch">
+      <img src="slike/Diego Velázquez - The Lunch.jpg" alt="Diego Velazquez – The Lunch">
+      <div class="title">Diego Velazquez – The Lunch</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Diego Velazquez – The Lunch">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Diego Velazquez – The Three Musicians">
+      <img src="slike/Diego Velázquez - The Three Musicians.jpg" alt="Diego Velazquez – The Three Musicians">
+      <div class="title">Diego Velazquez – The Three Musicians</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Diego Velazquez – The Three Musicians">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Eugene Delacroix – Shipwreck on the Coast">
+      <img src="slike/Eugène Delacroix - Shipwreck on the Coast.jpg" alt="Eugene Delacroix – Shipwreck on the Coast">
+      <div class="title">Eugene Delacroix – Shipwreck on the Coast</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Eugene Delacroix – Shipwreck on the Coast">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Francisco Goya – Courtyard with Lunatics ">
+      <img src="slike/Francisco Goya - Courtyard with Lunatics.jpg" alt="Francisco Goya – Courtyard with Lunatics ">
+      <div class="title">Francisco Goya – Courtyard with Lunatics </div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Francisco Goya – Courtyard with Lunatics ">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Francisco Goya – El Quitasol">
+      <img src="slike/Francisco Goya - El Quitasol.jpg" alt="Francisco Goya – El Quitasol">
+      <div class="title">Francisco Goya – El Quitasol</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Francisco Goya – El Quitasol">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Francisco Goya – El Tres de Mayo 1808">
+      <img src="slike/Francisco Goya - El Tres de Mayo 1808.jpg" alt="Francisco Goya – El Tres de Mayo 1808">
+      <div class="title">Francisco Goya – El Tres de Mayo 1808</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Francisco Goya – El Tres de Mayo 1808">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Francisco Goya – Fight with Cudgels">
+      <img src="slike/Francisco Goya - Fight with Cudgels.jpg" alt="Francisco Goya – Fight with Cudgels">
+      <div class="title">Francisco Goya – Fight with Cudgels</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Francisco Goya – Fight with Cudgels">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Giorgione - The Tempest">
+      <img src="slike/Giorgione - The Tempest.jpg" alt="Giorgione - The Tempest">
+      <div class="title">Giorgione - The Tempest</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Giorgione - The Tempest">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Jan van Eyck – Arnolfini Portrait">
+      <img src="slike/Jan van Eyck - Arnolfini Portrait.jpg" alt="Jan van Eyck – Arnolfini Portrait">
+      <div class="title">Jan van Eyck – Arnolfini Portrait</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Jan van Eyck – Arnolfini Portrait">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Lucas Cranach the Elder – Stag Hunt">
+      <img src="slike/Lucas Cranach the Elder - Stag Hunt.jpg" alt="Lucas Cranach the Elder – Stag Hunt">
+      <div class="title">Lucas Cranach the Elder – Stag Hunt</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Lucas Cranach the Elder – Stag Hunt">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Peter Paul Rubens – Massacre of the Innocents">
+      <img src="slike/Peter Paul Rubens - Massacre of the Innocents.jpg" alt="Peter Paul Rubens – Massacre of the Innocents">
+      <div class="title">Peter Paul Rubens – Massacre of the Innocents</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Peter Paul Rubens – Massacre of the Innocents">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Peter Paul Rubens – Old Woman and Boy with Candles">
+      <img src="slike/Peter Paul Rubens - The Farm at Laken.jpg" alt="Peter Paul Rubens – Old Woman and Boy with Candles">
+      <div class="title">Peter Paul Rubens – Old Woman and Boy with Candles</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Peter Paul Rubens – Old Woman and Boy with Candles">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Peter Paul Rubens – The Farm at Laken">
+      <img src="slike/Peter Paul Rubens - Old Woman and Boy with Candles.jpg" alt="Peter Paul Rubens – The Farm at Laken">
+      <div class="title">Peter Paul Rubens – The Farm at Laken</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Peter Paul Rubens – The Farm at Laken">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Blind Leading the Blind">
+      <img src="slike/Pieter Bruegel - The Blind Leading the Blind.jpeg" alt="Pieter Bruegel the Elder – The Blind Leading the Blind">
+      <div class="title">Pieter Bruegel the Elder – The Blind Leading the Blind</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Blind Leading the Blind">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Harvesters">
+      <img src="slike/Pieter Bruegel - The Harvesters.JPG" alt="Pieter Bruegel the Elder – The Harvesters">
+      <div class="title">Pieter Bruegel the Elder – The Harvesters</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Harvesters">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Hunters in the Snow">
+      <img src="slike/Pieter Bruegel - The Hunters in the Snow.jpg" alt="Pieter Bruegel the Elder – The Hunters in the Snow">
+      <div class="title">Pieter Bruegel the Elder – The Hunters in the Snow</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Hunters in the Snow">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Peasant Dance">
+      <img src="slike/Pieter Bruegel - The Peasant Dance.jpg" alt="Pieter Bruegel the Elder – The Peasant Dance">
+      <div class="title">Pieter Bruegel the Elder – The Peasant Dance</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Peasant Dance">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Peasant Wedding">
+      <img src="slike/Pieter Bruegel - The Peasant Wedding.jpg" alt="Pieter Bruegel the Elder – The Peasant Wedding">
+      <div class="title">Pieter Bruegel the Elder – The Peasant Wedding</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Peasant Wedding">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter Bruegel the Elder – The Triumph of Death">
+      <img src="slike/Pieter Bruegel - The Triumph of Death.jpg" alt="Pieter Bruegel the Elder – The Triumph of Death">
+      <div class="title">Pieter Bruegel the Elder – The Triumph of Death</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter Bruegel the Elder – The Triumph of Death">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter de Hooch – A Woman with a Child in a Pantry">
+      <img src="slike/Pieter de Hooch - A Woman with a Child in a Pantry.jpg" alt="Pieter de Hooch – A Woman with a Child in a Pantry">
+      <div class="title">Pieter de Hooch – A Woman with a Child in a Pantry</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter de Hooch – A Woman with a Child in a Pantry">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Pieter de Hooch – The Courtyard of a House in Delft">
+      <img src="slike/Pieter de Hooch - The_Courtyard of a House in Delft.jpg" alt="Pieter de Hooch – The Courtyard of a House in Delft">
+      <div class="title">Pieter de Hooch – The Courtyard of a House in Delft</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Pieter de Hooch – The Courtyard of a House in Delft">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Rembrandt van Rijn – Bathsheba at Her Bath">
+      <img src="slike/Rembrandt van Rijn - Bathsheba at Her Bath.jpg" alt="Rembrandt van Rijn – Bathsheba at Her Bath">
+      <div class="title">Rembrandt van Rijn – Bathsheba at Her Bath</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Rembrandt van Rijn – Bathsheba at Her Bath">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Rembrandt van Rijn – Christ in the Storm on the Lake of Galilee">
+      <img src="slike/Rembrandt van Rijn - Christ in the Storm on the Lake of Galilee.jpg" alt="Rembrandt van Rijn – Christ in the Storm on the Lake of Galilee">
+      <div class="title">Rembrandt van Rijn – Christ in the Storm on the Lake of Galilee</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Rembrandt van Rijn – Christ in the Storm on the Lake of Galilee">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Rembrandt van Rijn – The Abduction of Europa">
+      <img src="slike/Rembrandt van Rijn - The Abduction of Europa.jpg" alt="Rembrandt van Rijn – The Abduction of Europa">
+      <div class="title">Rembrandt van Rijn – The Abduction of Europa</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Rembrandt van Rijn – The Abduction of Europa">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Rembrandt van Rijn – The Anatomy Lesson of Dr Nicolaes Tulp">
+      <img src="slike/Rembrandt van Rijn - The Anatomy Lesson of Dr Nicolaes Tulp.jpg" alt="Rembrandt van Rijn – The Anatomy Lesson of Dr Nicolaes Tulp">
+      <div class="title">Rembrandt van Rijn – The Anatomy Lesson of Dr Nicolaes Tulp</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Rembrandt van Rijn – The Anatomy Lesson of Dr Nicolaes Tulp">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Rembrandt van Rijn – The Night Watch">
+      <img src="slike/Rembrandt van Rijn - The Night Watch.jpg" alt="Rembrandt van Rijn – The Night Watch">
+      <div class="title">Rembrandt van Rijn – The Night Watch</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Rembrandt van Rijn – The Night Watch">Izaberi</button>
+    </div>
+    
+
+    <div class="image-card" data-filename="Sandro Botticelli – The Birth of Venus">
+      <img src="slike/Sandro Botticelli - La nascita di Venere.jpg" alt="Sandro Botticelli – The Birth of Venus">
+      <div class="title">Sandro Botticelli – The Birth of Venus</div>
+      <div class="availability">Preostalo: ...</div>
+      <button class="select-button" data-filename="Sandro Botticelli – The Birth of Venus">Izaberi</button>
+    </div>
+    
+    </div>
+  </div>
+
+  <!-- Modal forma -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2>Unesi podatke</h2>
+      <form id="submit-form">
+        <label for="ime">Ime i prezime:</label>
+        <input type="text" id="ime" name="ime" required>
+
+        <label for="indeks">Broj indeksa:</label>
+        <input type="text" id="indeks" name="indeks" required>
+
+        <label for="imejl">Imejl (zvanični imejl institucije):</label>
+        <input type="email" id="imejl" name="imejl" required>
+
+        <input type="hidden" id="slika" name="slika">
+        <div id="form-error" style="color:red; margin-top:10px;"></div>
+        <button type="submit">Pošalji</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let selectedImage = "";
+
+    document.querySelectorAll(".select-button").forEach(function(button) {
+      button.addEventListener("click", function() {
+        selectedImage = button.getAttribute("data-filename");
+        document.getElementById("slika").value = selectedImage;
+        document.getElementById("form-error").innerText = "";
+        document.getElementById("modal").style.display = "block";
+      });
+    });
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    document.getElementById("submit-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const ime = document.getElementById("ime").value.trim();
+      const indeks = document.getElementById("indeks").value.trim();
+      const imejl = document.getElementById("imejl").value.trim();
+      const slika = document.getElementById("slika").value;
+
+      if (!imejl.endsWith("@gs.viser.edu.rs") && !imejl.endsWith("@viser.edu.rs")) {
+        document.getElementById("form-error").innerText = "Prijava zadatka moguća je korišćenjem zvaničnog imejla.";
+        return;
+      }
+
+      try {
+        const formData = new URLSearchParams();
+        formData.append("ime", ime);
+        formData.append("indeks", indeks);
+        formData.append("imejl", imejl);
+        formData.append("slika", slika);
+
+        const response = await fetch("https://script.google.com/macros/s/URL_TVOJE_SKRIPTE/exec", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: formData
+        });
+
+        const result = await response.text();
+        alert(result);
+        closeModal();
+      } catch (error) {
+        document.getElementById("form-error").innerText = "Greška u komunikaciji.";
+      }
+    });
+
+    async function ucitajBrojPrijava() {
+      const response = await fetch("https://script.google.com/macros/s/URL_TVOJE_SKRIPTE/exec?akcija=brojac");
+      const prijave = await response.json();
+
+      document.querySelectorAll(".image-card").forEach(card => {
+        const filename = card.getAttribute("data-filename");
+        const dugme = card.querySelector(".select-button");
+        const status = card.querySelector(".availability");
+
+        const broj = prijave[filename] || 0;
+        const preostalo = Math.max(0, 3 - broj);
+
+        status.textContent = "Preostalo: " + preostalo;
+        if (preostalo === 0) {
+          dugme.disabled = true;
+        }
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", ucitajBrojPrijava);
+  </script>
+</body>
+</html>
