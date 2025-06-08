@@ -205,7 +205,7 @@
     
 
     <div class="image-card" data-filename="Eugene Delacroix – Shipwreck on the Coast">
-      <img src="slike/Eugène_Delacroix__Shipwreck_on_the_Coast.jpg" alt="Eugene Delacroix – Shipwreck on the Coast">
+      <img src="slike/Eugene_Delacroix__Shipwreck_on_the_Coast.jpg" alt="Eugene Delacroix – Shipwreck on the Coast">
       <div class="title">Eugene Delacroix – Shipwreck on the Coast</div>
       <div class="availability">Preostalo: ...</div>
       <button class="select-button" data-filename="Eugene Delacroix – Shipwreck on the Coast">Izaberi</button>
@@ -405,99 +405,5 @@
     
     </div>
   </div>
-
-  <div id="modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeModal()">&times;</span>
-      <h2>Unesi podatke</h2>
-      <form id="submit-form">
-        <label for="ime">Ime i prezime:</label>
-        <input type="text" id="ime" name="ime" required>
-
-        <label for="indeks">Broj indeksa:</label>
-        <input type="text" id="indeks" name="indeks" required>
-
-        <label for="imejl">Imejl (zvanični imejl institucije):</label>
-        <input type="email" id="imejl" name="imejl" required>
-
-        <input type="hidden" id="slika" name="slika">
-        <div id="form-error" style="color:red; margin-top:10px;"></div>
-        <button type="submit">Pošalji</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    let selectedImage = "";
-
-    document.querySelectorAll(".select-button").forEach(function(button) {
-      button.addEventListener("click", function() {
-        selectedImage = button.getAttribute("data-filename");
-        document.getElementById("slika").value = selectedImage;
-        document.getElementById("form-error").innerText = "";
-        document.getElementById("modal").style.display = "block";
-      });
-    });
-
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
-    }
-
-    document.getElementById("submit-form").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const ime = document.getElementById("ime").value.trim();
-      const indeks = document.getElementById("indeks").value.trim();
-      const imejl = document.getElementById("imejl").value.trim();
-      const slika = document.getElementById("slika").value;
-
-      if (!imejl.endsWith("@gs.viser.edu.rs") && !imejl.endsWith("@viser.edu.rs")) {
-        document.getElementById("form-error").innerText = "Prijava zadatka moguća je korišćenjem zvaničnog imejla.";
-        return;
-      }
-
-      try {
-        const formData = new URLSearchParams();
-        formData.append("ime", ime);
-        formData.append("indeks", indeks);
-        formData.append("imejl", imejl);
-        formData.append("slika", slika);
-
-        const response = await fetch("https://script.google.com/macros/s/AKfycby5FvPaosa_btcIdIZDkUrhcWqWl32zuQL8lDkfJ2aofjmHM3zIbgwMCHmCd7ooypjk/exec", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: formData
-        });
-
-        const result = await response.text();
-        alert(result);
-        closeModal();
-      } catch (error) {
-        document.getElementById("form-error").innerText = "Greška u komunikaciji.";
-      }
-    });
-
-    async function ucitajBrojPrijava() {
-      const response = await fetch("https://script.google.com/macros/s/AKfycby5FvPaosa_btcIdIZDkUrhcWqWl32zuQL8lDkfJ2aofjmHM3zIbgwMCHmCd7ooypjk/exec?akcija=brojac");
-      const prijave = await response.json();
-
-      document.querySelectorAll(".image-card").forEach(card => {
-        const filename = card.getAttribute("data-filename");
-        const dugme = card.querySelector(".select-button");
-        const status = card.querySelector(".availability");
-
-        const broj = prijave[filename] || 0;
-        const preostalo = Math.max(0, 3 - broj);
-
-        status.textContent = "Preostalo: " + preostalo;
-        if (preostalo === 0) {
-          dugme.disabled = true;
-        }
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", ucitajBrojPrijava);
-  </script>
 </body>
 </html>
